@@ -1,5 +1,5 @@
 {
-  "name": "driver_listing",
+  "name": "driverApp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

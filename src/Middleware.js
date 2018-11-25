@@ -38,13 +38,15 @@ const persistData = store => next => action => {
     case constants.SAVE_NEW_DRIVER:
       localState.drivers.all.push(action.payload);
       localStorage.setItem('driver-list', JSON.stringify(localState));
-      /* falls through */
+      result = next(action);
+      return result;
     case constants.DELETE_DRIVER:
       localState.drivers.all = localState.drivers.all.filter((driver, index) => {
         return (index + 1) !== action.payload;
       });
       localStorage.setItem('driver-list', JSON.stringify(localState));
-      /* falls through */
+      result = next(action);
+      return result;
     case constants.UPDATE_DRIVER:
       localState.drivers.all = localState.drivers.all.map((driver, index) => {
         if (index + 1 === action.payload.id) {
@@ -53,11 +55,13 @@ const persistData = store => next => action => {
         return driver;
       });      
       localStorage.setItem('driver-list', JSON.stringify(localState));
-      /* falls through */
+      result = next(action);
+      return result;
     case constants.AUTH:
       localState.drivers.auth = action.payload;  
       localStorage.setItem('driver-list', JSON.stringify(localState));
-      /* falls through */
+      result = next(action);
+      return result;
     default:
       result = next(action);
       return result;

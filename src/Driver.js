@@ -37,13 +37,13 @@ class Driver extends React.Component {
           </h4>
         </button>
         <div className="driverInfo">
-          <p>First name: {this.props.fname}</p>
-          <p>Last name: {this.props.lname}</p>
-          <p>DOB: {this.props.dob}</p>
-          <p>License No: {this.props.licno}</p>
-          <p>Email: {this.props.email}</p>
-          <p>Phone Number: {this.props.phone}</p>
-          <p>License Expiration Date: {this.props.licexpdate}</p>
+          <p><b>First name:</b> {this.props.fname}</p>
+          <p><b>Last name:</b> {this.props.lname}</p>
+          <p><b>DOB:</b> {this.props.dob}</p>
+          <p><b>License No:</b> {this.props.licno}</p>
+          <p><b>Email:</b> {this.props.email}</p>
+          <p><b>Phone Number:</b> {this.props.phone}</p>
+          <p><b>License Expiration Date:</b> {this.props.licexpdate}</p>
           <button 
             onClick={this.editDriver.bind(this)}
             className="btn edit-btn"

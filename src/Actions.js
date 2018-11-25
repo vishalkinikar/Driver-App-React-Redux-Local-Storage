@@ -4,11 +4,11 @@ import { constants } from './Constants';
 //   {
 //     fname: 'Vishal', 
 //     lname: 'Kinikar',
-//     dob: '24/10/1980',
-//     licno: 'MH48/214450',
-//     email: 'vishalkonline@gmail.com',
-//     phone: '9833866537',
-//     licexpdate: '20/11/2020'
+//     dob: '2018-11-14T17:46:58.000Z',
+//     licno: 'MH48/1988/450X1',
+//     email: 'test@yahoo.co.in',
+//     phone: '980000000',
+//     licexpdate: '2018-11-25T17:46:58.494Z
 //   }
 // ];
 

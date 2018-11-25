@@ -7,7 +7,7 @@ import { Actions } from './Actions';
 import { Modal } from './Modal';
 import { Driver } from './Driver';
 
-import { Auth } from './login';
+import { Auth } from './Login';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './style.css';
@@ -60,7 +60,7 @@ class DriverApp extends React.Component {
   renderDrivers() {
     if (!this.props.drivers || this.props.drivers.length < 1) {
       return (
-        <h4>No drivers yet. Click 'Add New Driver' to get started!</h4>
+        <h4 className="noList">No drivers yet. Click 'Add New Driver' to get started!</h4>
       );
     }
     const driverList = this.props.drivers.map(driver => {

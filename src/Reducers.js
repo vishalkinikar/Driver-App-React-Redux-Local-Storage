@@ -36,6 +36,7 @@ const DriverReducer = function (state = INITIAL_DRIVER_STATE, action) {
     case constants.SAVE_NEW_DRIVER:
       let newDriver = action.payload;
       newDriver.id = getNextId(state.lastId);
+      state.lastId = newDriver.id;
       let allDrivers = state.all;
       allDrivers.push(newDriver);
       return Object.assign({}, state, {all: allDrivers});

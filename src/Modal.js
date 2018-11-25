@@ -20,7 +20,7 @@ class Modal extends React.Component {
         licno: props.licno,
         email: props.email,
         phone: props.phone,
-        licexpdate: props.licexpdate,
+        licexpdate: new Date(props.licexpdate),
         errors: ''
       });
     } else {
@@ -31,7 +31,7 @@ class Modal extends React.Component {
         licno: '',
         email: '',
         phone: '',
-        licexpdate: '',
+        licexpdate: new Date(),
         errors: ''
       });
     }
@@ -57,7 +57,7 @@ class Modal extends React.Component {
   }
 
   validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let re = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
     return re.test(String(email).toLowerCase());
   }
   
@@ -70,7 +70,7 @@ class Modal extends React.Component {
         licno: this.state.licno,
         email: this.state.email,
         phone: this.state.phone,
-        licexpdate: this.state.licexpdate,
+        licexpdate: typeof this.state.licexpdate === 'object' ? this.state.licexpdate.toJSON() : this.state.licexpdate,
     }
     if (driver.fname.length < 1 || driver.dob.length < 1 || driver.licno.length < 1 || driver.email.length < 1 || driver.phone.length < 1 || driver.licexpdate.length < 1) {
       let errors = [];
@@ -105,6 +105,12 @@ class Modal extends React.Component {
   }
 
   handleDOBChange(date) {
+    this.setState({
+      dob: date
+    });
+  }
+
+  handleLEDChange(date) {
     this.setState({
       dob: date
     });
@@ -162,7 +168,7 @@ class Modal extends React.Component {
               <div className="input-form-group">
                 <label htmlFor="driver-dob">DOB</label>
                 <DatePicker
-                dateFormat="yyyy/MM/dd"
+                  dateFormat="yyyy/MM/dd"
                   selected={this.state.dob}
                   onChange={this.handleDOBChange.bind(this)}
                 />
@@ -200,12 +206,11 @@ class Modal extends React.Component {
 
               <div className="input-form-group">
                 <label htmlFor="driver-licexpdate">License Expiration Date</label>
-                <input type="text" 
-                  onChange={this.handleInputChange.bind(this)}
-                  id="driver-licexpdate" 
-                  className="form-control"
-                  value={this.state.licexpdate}
-                  name="licexpdate"/>
+                <DatePicker
+                  dateFormat="yyyy/MM/dd"
+                  selected={this.state.licexpdate}
+                  onChange={this.handleLEDChange.bind(this)}
+                />
               </div>
 
               <p className="text-danger">

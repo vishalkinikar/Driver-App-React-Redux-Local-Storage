@@ -1,6 +1,15 @@
 body {
-  font-family: 'Montserrat', 'ariel', 'helvetica', sans-serif;
-  background-size: cover;
+  font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #4a4a4a;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+#main-container  h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding-top: 20px;
 }
 
 #root {
@@ -23,8 +32,7 @@ body {
 }
 #root .btn.btn-create {
   margin-top: -20px;
-  min-width: 40%;
-  font-size: 1.3rem;
+  min-width: 160px;
 }
 
 .driverApp {
@@ -66,16 +74,17 @@ body {
   padding: 10px;
 }
 .driverApp .driver .driverHeader {
-  background: #46c6d6;
+  background: #6a8ed6;
   position: relative;
   color: #fafafa;
-  font-size: 2rem;
+  font-size: 1.4rem;
   letter-spacing: 1px;
   margin-top: 0;
   margin-bottom: 0;
   border-radius: 5px;
-  padding: 10px;
+  padding: 10px 10px 10px 25px;
   transition: all .25s linear;
+  text-align: left;
 }
 .driverApp .driver .driverHeaderLink {
   background: transparent;
@@ -86,7 +95,7 @@ body {
 }
 .driverApp .driver .driverHeader.active {
   border-radius: 5px 5px 0 0;
-  background: #0a5078;
+  background: #3b71de;
 }
 .driverApp .driver .driverHeader .glyphicon-plus-sign,
 .driverApp .driver .driverHeader .glyphicon-minus-sign {
@@ -104,6 +113,11 @@ body {
   margin: 0 auto;
   overflow: hidden;
   display: none;
+  padding-top: 20px;
+}
+.driverApp .driver .driverInfo p b {
+  display: inline-block;
+  min-width: 200px;
 }
 .driverApp .driver .sub-header {
   font-size: 1.8rem;
@@ -117,9 +131,8 @@ body {
   padding-bottom: 10px;
 }
 .driverApp .driver .edit-btn {
-  background: #146496;
+  background: #3387de;
   color: #fafafa;
-  margin-left: 15px;
   margin-top: 20px;
   margin-bottom: 15px;
   position: relative;
@@ -173,10 +186,17 @@ body {
 #container label {
   text-align: left;
   display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
 }
 
 #container .form-control {
   margin-bottom: 10px;
+}
+
+.noList {
+  font-size: 1.2rem;
+  color: #7e929c;
 }
 
   
