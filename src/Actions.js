@@ -17,6 +17,20 @@ let initialData = [];
   
   
 const Actions = {
+
+  auth: (data) => {
+    return {
+      type: constants.AUTH,
+      payload: data
+    }
+  },
+
+  isAuth: () => {
+    return {
+      type: constants.IS_AUTH
+    }
+  },
+
   getAllDrivers: () => {
     return (dispatch) => {   
       dispatch(
@@ -34,6 +48,7 @@ const Actions = {
       payload: data
     }
   },
+
   editDriver: () => {
     return {
       type: constants.EDIT_DRIVER

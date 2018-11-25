@@ -10,7 +10,7 @@ const INITIAL_DRIVER_STATE = {
   currentDriver: {id: null}
 }
 
-const DriverReducer = (state = INITIAL_DRIVER_STATE, action) => {
+const DriverReducer = function (state = INITIAL_DRIVER_STATE, action) {
   switch(action.type) {
     case constants.GET_ALL_DRIVERS:
       let lastId = state.lastId;
@@ -19,7 +19,9 @@ const DriverReducer = (state = INITIAL_DRIVER_STATE, action) => {
         driver.id = lastId;
         return driver;
       }); 
-      return Object.assign({}, state, {lastId: lastId}, {all: drivers});
+      return Object.assign({}, state, {lastId: lastId}, {all: drivers})
+    case constants.IS_AUTH:
+      return Object.assign({}, state, {auth: action.payload});
     case constants.SET_CURRENT_DRIVER:
       let newCurrent = state.currentDriver.id === action.payload.id ? INITIAL_DRIVER_STATE.currentDriver : action.payload;
       return Object.assign({}, state, {currentDriver: newCurrent});
@@ -42,6 +44,8 @@ const DriverReducer = (state = INITIAL_DRIVER_STATE, action) => {
           return driver.id !== action.payload; 
         })
       });
+    case constants.AUTH:
+      return Object.assign({}, state, {auth: action.payload});
     default:
       return state;
   }

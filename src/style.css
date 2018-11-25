@@ -1,7 +1,4 @@
 body {
-  background: url(https://s11.postimg.org/p4uy4cu1f/cooking_cropped.jpg);
-  background-attachment: fixed;
-  background-position: center;
   font-family: 'Montserrat', 'ariel', 'helvetica', sans-serif;
   background-size: cover;
 }
@@ -80,6 +77,13 @@ body {
   padding: 10px;
   transition: all .25s linear;
 }
+.driverApp .driver .driverHeaderLink {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+  width: 100%;
+}
 .driverApp .driver .driverHeader.active {
   border-radius: 5px 5px 0 0;
   background: #0a5078;
@@ -156,4 +160,23 @@ body {
 .modal label {
   margin-top: 10px;
 }
+
+.loginBox {
+  padding: 30px;
+  border: #ccc 1px solid;
+  border-radius: 4px;
+  box-shadow: #ccc 0px 0px 5px 0px;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+#container label {
+  text-align: left;
+  display: block;
+}
+
+#container .form-control {
+  margin-bottom: 10px;
+}
+
   

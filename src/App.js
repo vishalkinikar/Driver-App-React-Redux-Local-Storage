@@ -7,6 +7,8 @@ import { Actions } from './Actions';
 import { Modal } from './Modal';
 import { Driver } from './Driver';
 
+import { Auth } from './login';
+
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './style.css';
 
@@ -27,21 +29,31 @@ class DriverApp extends React.Component {
           : null  
           } 
         <div className="driverApp"> 
-          {this.renderDrivers()}
+          {
+            this.props.auth ?
+              this.renderDrivers()
+            : 
+              <Auth />
+          }
         </div>
 
-        <button
-          onClick={this.createDriver.bind(this)}
-          className="btn btn-success btn-create"
-        >
-          Add New Driver
-        </button>
+        {
+          this.props.auth ?
+            <button
+              onClick={this.createDriver.bind(this)}
+              className="btn btn-success btn-create"
+            >
+              Add New Driver
+            </button>
+          : null
+        }
       </div>
      </div> 
     );     
   }
   
   componentDidMount() {
+    this.props.actions.isAuth();
     this.props.actions.getAllDrivers();
   }
   
@@ -70,6 +82,7 @@ class DriverApp extends React.Component {
 const mapStateToDriverAppProps = (state) => {
   return {
     drivers: state.drivers.all,
+    auth: state.drivers.auth,
     currentDriver: state.drivers.currentDriver,
     modal: state.modal
   }

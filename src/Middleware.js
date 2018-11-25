@@ -16,7 +16,7 @@ const persistData = store => next => action => {
   }
   else {
     let all = action.payload;
-    let driverState = { all: all};
+    let driverState = { all: all, auth: false};
     localState = Object.assign({}, {drivers: driverState});
   }
   
@@ -30,16 +30,21 @@ const persistData = store => next => action => {
       localStorage.setItem('driver-list', JSON.stringify(localState));
       result = next(newAction);
       return result;
+    case constants.IS_AUTH:
+      return next({
+        type: action.type,
+        payload: localState.drivers.auth
+      })
     case constants.SAVE_NEW_DRIVER:
       localState.drivers.all.push(action.payload);
       localStorage.setItem('driver-list', JSON.stringify(localState));
-      break;
+      /* falls through */
     case constants.DELETE_DRIVER:
       localState.drivers.all = localState.drivers.all.filter((driver, index) => {
         return (index + 1) !== action.payload;
       });
       localStorage.setItem('driver-list', JSON.stringify(localState));
-      break;
+      /* falls through */
     case constants.UPDATE_DRIVER:
       localState.drivers.all = localState.drivers.all.map((driver, index) => {
         if (index + 1 === action.payload.id) {
@@ -48,7 +53,11 @@ const persistData = store => next => action => {
         return driver;
       });      
       localStorage.setItem('driver-list', JSON.stringify(localState));
-      break;
+      /* falls through */
+    case constants.AUTH:
+      localState.drivers.auth = action.payload;  
+      localStorage.setItem('driver-list', JSON.stringify(localState));
+      /* falls through */
     default:
       result = next(action);
       return result;

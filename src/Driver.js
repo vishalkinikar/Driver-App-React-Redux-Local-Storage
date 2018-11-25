@@ -31,12 +31,11 @@ class Driver extends React.Component {
   render() {
     return (
       <div className="driver">
-        <a onClick={this.setCurrentDriver.bind(this)}
-            href="#">
-            <h4 className={"driverHeader" + (this.props.active ? " active" : "")} >
-              {this.props.fname}
-            </h4>
-          </a>
+        <button className="driverHeaderLink" onClick={this.setCurrentDriver.bind(this)}>
+          <h4 className={"driverHeader" + (this.props.active ? " active" : "")} >
+            {this.props.fname}
+          </h4>
+        </button>
         <div className="driverInfo">
           <p>First name: {this.props.fname}</p>
           <p>Last name: {this.props.lname}</p>

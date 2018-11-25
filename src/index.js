@@ -6,8 +6,8 @@ import 'bootstrap';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-import { DriverReducer, ModalReducer } from './Reducers';
 import { thunkMiddleware, persistData } from './Middleware';
+import { DriverReducer, ModalReducer } from './Reducers';
 
 import { DriverApp } from './App';
 

@@ -1,5 +1,7 @@
 import React from 'react';
-import $ from "jquery";
+import $ from "jquery";import DatePicker from "react-datepicker";
+ 
+import "react-datepicker/dist/react-datepicker.css";
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -14,7 +16,7 @@ class Modal extends React.Component {
       this.state = ({
         fname: props.fname,
         lname: props.lname,
-        dob: props.dob,
+        dob: new Date(props.dob),
         licno: props.licno,
         email: props.email,
         phone: props.phone,
@@ -25,7 +27,7 @@ class Modal extends React.Component {
       this.state = ({
         fname: '',
         lname: '',
-        dob: '',
+        dob: new Date(),
         licno: '',
         email: '',
         phone: '',
@@ -53,13 +55,18 @@ class Modal extends React.Component {
     }
     this.closeModal();
   }
+
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
   
   handleSave() {
     let driver = {
         id: this.props.id,
         fname: this.state.fname,
         lname: this.state.lname,
-        dob: this.state.dob,
+        dob: typeof this.state.dob === 'object' ? this.state.dob.toJSON() : this.state.dob,
         licno: this.state.licno,
         email: this.state.email,
         phone: this.state.phone,
@@ -75,6 +82,12 @@ class Modal extends React.Component {
         return;
       }
     }
+    if(!this.validateEmail(driver.email)) {
+      this.setState({
+        errors: 'Email Not Valid!'
+      });
+      return;
+    }
     if (!this.props.modal.newEntry) {
       this.props.actions.updateDriver(driver);
     }
@@ -84,10 +97,22 @@ class Modal extends React.Component {
     this.closeModal();
   }
   
-  handleNameChange(e) {
+  handleInputChange(e) {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
+    });
+  }
+
+  handleDOBChange(date) {
+    this.setState({
+      dob: date
+    });
+  }
+
+  handleEmailChange(date) {
+    this.setState({
+      dob: date
     });
   }
   
@@ -112,17 +137,12 @@ class Modal extends React.Component {
               >
                 <span aria-hidden="true">&times;</span>
               </button>
-              {/* {
-                !this.props.id ?  
-                <h4 className="modal-title">Edit Driver</h4>
-                : <h4 className="modal-title">Add Driver</h4>
-              } */}
             </div>
             <div className="modal-body">
               <div className="input-form-group">
                 <label htmlFor="driver-fname">First Name</label>
                 <input type="text" 
-                  onChange={this.handleNameChange.bind(this)}
+                  onChange={this.handleInputChange.bind(this)}
                   id="driver-fname" 
                   className="form-control"
                   value={this.state.fname}
@@ -132,7 +152,7 @@ class Modal extends React.Component {
               <div className="input-form-group">
                 <label htmlFor="driver-lname">Last Name</label>
                 <input type="text" 
-                  onChange={this.handleNameChange.bind(this)}
+                  onChange={this.handleInputChange.bind(this)}
                   id="driver-name" 
                   className="form-control"
                   value={this.state.lname}
@@ -141,18 +161,17 @@ class Modal extends React.Component {
 
               <div className="input-form-group">
                 <label htmlFor="driver-dob">DOB</label>
-                <input type="text" 
-                  onChange={this.handleNameChange.bind(this)}
-                  id="driver-dob" 
-                  className="form-control"
-                  value={this.state.dob}
-                  name="dob"/>
+                <DatePicker
+                dateFormat="yyyy/MM/dd"
+                  selected={this.state.dob}
+                  onChange={this.handleDOBChange.bind(this)}
+                />
               </div>
 
               <div className="input-form-group">
                 <label htmlFor="driver-licno">License No</label>
                 <input type="text" 
-                  onChange={this.handleNameChange.bind(this)}
+                  onChange={this.handleInputChange.bind(this)}
                   id="driver-licno" 
                   className="form-control"
                   value={this.state.licno}
@@ -162,7 +181,7 @@ class Modal extends React.Component {
               <div className="input-form-group">
                 <label htmlFor="driver-email">Email</label>
                 <input type="text" 
-                  onChange={this.handleNameChange.bind(this)}
+                  onChange={this.handleInputChange.bind(this)}
                   id="driver-email" 
                   className="form-control"
                   value={this.state.email}
@@ -171,8 +190,8 @@ class Modal extends React.Component {
 
               <div className="input-form-group">
                 <label htmlFor="driver-phone">Phone</label>
-                <input type="text" 
-                  onChange={this.handleNameChange.bind(this)}
+                <input type="number" 
+                  onChange={this.handleInputChange.bind(this)}
                   id="driver-phone" 
                   className="form-control"
                   value={this.state.phone}
@@ -182,7 +201,7 @@ class Modal extends React.Component {
               <div className="input-form-group">
                 <label htmlFor="driver-licexpdate">License Expiration Date</label>
                 <input type="text" 
-                  onChange={this.handleNameChange.bind(this)}
+                  onChange={this.handleInputChange.bind(this)}
                   id="driver-licexpdate" 
                   className="form-control"
                   value={this.state.licexpdate}
