@@ -39,11 +39,11 @@ class Driver extends React.Component {
         <div className="driverInfo">
           <p><b>First name:</b> {this.props.fname}</p>
           <p><b>Last name:</b> {this.props.lname}</p>
-          <p><b>DOB:</b> {this.props.dob}</p>
+          <p><b>DOB:</b> {new Date(this.props.dob).toLocaleDateString()}</p>
           <p><b>License No:</b> {this.props.licno}</p>
           <p><b>Email:</b> {this.props.email}</p>
           <p><b>Phone Number:</b> {this.props.phone}</p>
-          <p><b>License Expiration Date:</b> {this.props.licexpdate}</p>
+          <p><b>License Expiration Date:</b> {new Date(this.props.licexpdate).toLocaleDateString()}</p>
           <button 
             onClick={this.editDriver.bind(this)}
             className="btn edit-btn"
