@@ -16,7 +16,7 @@ I have used the following tools:
 ## How to run
 
 - Clone the repo
-- cd nearby.me
+- cd Driver-App-React-Redux-Local-Storage
 - run npm install && npm start
 - open http://localhost:3000 in your browser
 
